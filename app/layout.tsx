@@ -41,8 +41,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-KT64NB4H" />
       <body className="antialiased">
+        <GoogleTagManager gtmId="GTM-KT64NB4H" />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
