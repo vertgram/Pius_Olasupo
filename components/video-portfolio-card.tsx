@@ -5,8 +5,10 @@ export const CALLBOXS_VIDEO_URL = 'https://drive.google.com/file/d/1VQDt2_gHbMi0
 export function VideoPortfolioCard() {
   return (
     <article className="project-card">
-      <div className="project-art blue has-image">
-        <img src="/images/projects/callboxs-logistics-thumbnail.png" alt="CALLBOXS logistics campaign visual used as a still preview for the short-form video." />
+      <div className="project-art blue has-image video-card-art">
+        <a href={CALLBOXS_VIDEO_URL} target="_blank" rel="noreferrer" className="video-thumbnail-link" aria-label="Open the CALLBOXS campaign video in Google Drive">
+          <img src="/images/projects/callboxs-video-thumbnail.jpg" alt="Video editing screen showing a silhouetted person at sunset above a multitrack timeline." />
+        </a>
       </div>
       <div className="project-info">
         <div className="project-meta">
