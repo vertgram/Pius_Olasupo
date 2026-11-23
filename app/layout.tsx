@@ -6,8 +6,11 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
+const deploymentHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL
+const metadataBase = new URL(deploymentHost ? `https://${deploymentHost}` : 'http://localhost:3000')
 
 export const metadata: Metadata = {
+  metadataBase,
   title: 'Pius Olasupo — Digital Marketer & Content Strategist',
   description: 'Portfolio of Pius Olasupo, a digital marketer and content strategist focused on purposeful content, campaigns and business value.',
   generator: 'v0.app',
