@@ -4,6 +4,7 @@ import { ArrowUpRight, AtSign, Mail, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { WorkSection } from '@/components/work-section'
 import { CALLBOXS_VIDEO_URL } from '@/components/video-portfolio-card'
+import { getLinkText, trackInteraction } from '@/lib/interaction-tracking'
 
 const skills = ['Content strategy', 'Social media marketing', 'Campaign planning', 'Copywriting', 'Video editing', 'Market research', 'Lead generation', 'Canva', 'CapCut', 'Google Analytics', 'Meta Business Suite']
 
@@ -55,7 +56,7 @@ export function Portfolio() {
           <article className="experience-row"><div className="experience-timing"><span className="experience-date">January 2024 – September 2024</span><span className="experience-arrangement">Remote</span></div><div className="experience-details"><h3>Key Opinion Consumer</h3><p className="experience-company">Binance</p><ul className="experience-responsibilities"><li>Created educational and promotional content that communicated Binance products to a digital audience.</li><li>Supported organic community growth and brand awareness through consistent content and audience interaction.</li><li>Used authentic product experiences to develop relatable content and strengthen audience trust.</li></ul></div></article>
         </div></section>
 
-        <section id="contact" className="contact section-pad"><div className="section-label">06 / Contact</div><div className="contact-grid"><h2>Have a problem<br />worth <em>solving?</em></h2><div><p className="contact-copy">Whether you&apos;re building a team, shaping a campaign or exploring an idea, I&apos;d be glad to hear from you.</p><div className="contact-links"><a href="mailto:Olasupopius17@gmail.com"><Mail size={18} />Olasupopius17@gmail.com</a><a href="https://www.linkedin.com/in/pius-olasupo-507a83421/" target="_blank" rel="noreferrer"><AtSign size={18} />linkedin.com/in/pius-olasupo-507a83421/</a></div></div></div></section>
+        <section id="contact" className="contact section-pad"><div className="section-label">06 / Contact</div><div className="contact-grid"><h2>Have a problem<br />worth <em>solving?</em></h2><div><p className="contact-copy">Whether you&apos;re building a team, shaping a campaign or exploring an idea, I&apos;d be glad to hear from you.</p><div className="contact-links"><a href="mailto:Olasupopius17@gmail.com" onClick={(event) => trackInteraction('email_click', { link_url: event.currentTarget.href, link_text: getLinkText(event.currentTarget) })}><Mail size={18} />Olasupopius17@gmail.com</a><a href="https://www.linkedin.com/in/pius-olasupo-507a83421/" target="_blank" rel="noreferrer" onClick={(event) => trackInteraction('linkedin_click', { link_url: event.currentTarget.href, link_text: getLinkText(event.currentTarget) })}><AtSign size={18} />linkedin.com/in/pius-olasupo-507a83421/</a></div></div></div></section>
       </main>
       <footer className="site-footer"><span>© 2026 Pius Olasupo</span><span>Built with intention.</span><a href="#top">Back to top ↑</a></footer>
     </div>
