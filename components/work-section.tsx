@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { VideoPortfolioCard } from '@/components/video-portfolio-card'
+import { getLinkText, trackInteraction } from '@/lib/interaction-tracking'
 
 type Project = {
   number: string
@@ -36,7 +37,7 @@ function ProjectCard({ project }: { project: Project }) {
         <h3>{project.title}</h3>
         <p>{project.text}</p>
         {project.details && <details className="project-details"><summary>What the project demonstrates</summary><ul>{project.details.points.map((point) => <li key={point}>{point}</li>)}</ul><p><strong>Key research focus:</strong> {project.details.focus}</p></details>}
-        <a href={project.href ?? '#case-studies'} target={project.openInNewTab ? '_blank' : undefined} rel={project.openInNewTab ? 'noopener noreferrer' : undefined} className="case-link">{project.linkText ?? (project.href ? 'Explore campaign' : 'View case study')} <ArrowUpRight size={15} /></a>
+        <a href={project.href ?? '#case-studies'} target={project.openInNewTab ? '_blank' : undefined} rel={project.openInNewTab ? 'noopener noreferrer' : undefined} className="case-link" onClick={(event) => trackInteraction('project_click', { project_name: project.title, project_url: event.currentTarget.href })}>{project.linkText ?? (project.href ? 'Explore campaign' : 'View case study')} <ArrowUpRight size={15} /></a>
       </div>
     </article>
   )
