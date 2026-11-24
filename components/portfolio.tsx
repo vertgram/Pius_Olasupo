@@ -39,7 +39,7 @@ export function Portfolio() {
 
         <section id="about" className="about section-pad section-border">
           <div className="section-label">01 / About me</div>
-          <div className="about-grid"><h2>Curious by nature.<br /><em>Strategic by practice.</em></h2><div className="about-copy"><p>I work at the intersection of ideas, audiences and business goals. My practice spans digital marketing, content strategy, social media management, visual content creation and B2B marketing.</p><p>I care about the thinking behind the work as much as the work itself — understanding the problem, asking better questions and making every piece of content earn its place.</p></div></div>
+          <div className="about-grid"><h2>Curious by nature.<br /><em>Strategic by practice.</em></h2><div className="about-copy"><p>I work at the intersection of ideas, audiences and business goals. My practice spans digital marketing, content strategy, social media management, visual content creation and B2B marketing.</p><p>I care about the thinking behind the work as much as the work itself. Understanding the problem, asking better questions and making every piece of content earn its place.</p></div></div>
         </section>
 
         <WorkSection />
