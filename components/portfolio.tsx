@@ -1,7 +1,8 @@
 'use client'
 
-import { ArrowUpRight, AtSign, Mail, Menu, X } from 'lucide-react'
+import { ArrowUpRight, AtSign, Download, Mail, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { ContactForm } from '@/components/contact-form'
 import { WorkSection } from '@/components/work-section'
 import { CALLBOXS_VIDEO_URL } from '@/components/video-portfolio-card'
 import { getLinkText, trackInteraction } from '@/lib/interaction-tracking'
@@ -12,7 +13,14 @@ function ArrowLink({ children, href = '#' }: { children: React.ReactNode; href?:
   return <a href={href} className="arrow-link">{children}<ArrowUpRight size={17} strokeWidth={1.6} /></a>
 }
 
-export function Portfolio() {
+function CVLink({ className, available }: { className: string; available: boolean }) {
+  const content = <><Download size={15} aria-hidden="true" />Download CV</>
+  return available
+    ? <a href="/cv.pdf" download="Pius-Olasupo-CV.pdf" className={className} onClick={() => trackInteraction('cv_download', { file_name: 'Pius-Olasupo-CV.pdf', link_url: '/cv.pdf' })}>{content}</a>
+    : <span className={`${className} cv-link-disabled`} aria-disabled="true" title="Upload the real CV PDF to public/cv.pdf to enable this download">{content}</span>
+}
+
+export function Portfolio({ cvAvailable }: { cvAvailable: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <div className="site-shell">
@@ -23,6 +31,7 @@ export function Portfolio() {
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
           <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
+          <CVLink className="nav-cv-link" available={cvAvailable} />
           <a href="#contact" onClick={() => setMenuOpen(false)} className="nav-contact">Let&apos;s talk <ArrowUpRight size={15} /></a>
         </nav>
       </header>
@@ -33,7 +42,7 @@ export function Portfolio() {
           <h1>I turn ideas and<br /><em>business problems</em><br />into strategic<br /><span className="accent-text">digital content.</span></h1>
           <div className="hero-bottom">
             <p className="hero-intro">I&apos;m Pius Olasupo, a digital marketer and content strategist focused on creating purposeful content, developing campaigns and communicating business value.</p>
-            <div className="hero-links"><ArrowLink href="#work">Explore my work</ArrowLink><ArrowLink href="#contact">Contact me</ArrowLink></div>
+            <div className="hero-links"><ArrowLink href="#work">Explore my work</ArrowLink><ArrowLink href="#contact">Contact me</ArrowLink><CVLink className="arrow-link cv-download-link" available={cvAvailable} />{!cvAvailable && <p className="cv-availability-note">The CV download will be available after the final PDF is uploaded to public/cv.pdf.</p>}</div>
           </div>
           <div className="scroll-cue"><span>Scroll to explore</span><span className="scroll-line" /></div>
         </section>
@@ -56,7 +65,7 @@ export function Portfolio() {
           <article className="experience-row"><div className="experience-timing"><span className="experience-date">January 2024 – September 2024</span><span className="experience-arrangement">Remote</span></div><div className="experience-details"><h3>Key Opinion Consumer</h3><p className="experience-company">Binance</p><ul className="experience-responsibilities"><li>Created educational and promotional content that communicated Binance products to a digital audience.</li><li>Supported organic community growth and brand awareness through consistent content and audience interaction.</li><li>Used authentic product experiences to develop relatable content and strengthen audience trust.</li></ul></div></article>
         </div></section>
 
-        <section id="contact" className="contact section-pad"><div className="section-label">06 / Contact</div><div className="contact-grid"><h2>Have a problem<br />worth <em>solving?</em></h2><div><p className="contact-copy">Whether you&apos;re building a team, shaping a campaign or exploring an idea, I&apos;d be glad to hear from you.</p><div className="contact-links"><a href="mailto:Olasupopius17@gmail.com" onClick={(event) => trackInteraction('email_click', { link_url: event.currentTarget.href, link_text: getLinkText(event.currentTarget) })}><Mail size={18} />Olasupopius17@gmail.com</a><a href="https://www.linkedin.com/in/pius-olasupo-507a83421/" target="_blank" rel="noreferrer" onClick={(event) => trackInteraction('linkedin_click', { link_url: event.currentTarget.href, link_text: getLinkText(event.currentTarget) })}><AtSign size={18} />linkedin.com/in/pius-olasupo-507a83421/</a></div></div></div></section>
+        <section id="contact" className="contact section-pad"><div className="section-label">06 / Contact</div><div className="contact-grid"><h2>Have a problem<br />worth <em>solving?</em></h2><div><p className="contact-copy">Whether you&apos;re building a team, shaping a campaign or exploring an idea, I&apos;d be glad to hear from you.</p><div className="contact-links"><a href="mailto:Olasupopius17@gmail.com" onClick={(event) => trackInteraction('email_click', { link_url: event.currentTarget.href, link_text: getLinkText(event.currentTarget) })}><Mail size={18} />Olasupopius17@gmail.com</a><a href="https://www.linkedin.com/in/pius-olasupo-507a83421/" target="_blank" rel="noreferrer" onClick={(event) => trackInteraction('linkedin_click', { link_url: event.currentTarget.href, link_text: getLinkText(event.currentTarget) })}><AtSign size={18} />linkedin.com/in/pius-olasupo-507a83421/</a></div></div></div><div className="contact-form-wrap"><div className="section-label">Send a message</div><ContactForm /></div></section>
       </main>
       <footer className="site-footer"><span>© 2026 Pius Olasupo</span><span>Built with intention.</span><a href="#top">Back to top ↑</a></footer>
     </div>

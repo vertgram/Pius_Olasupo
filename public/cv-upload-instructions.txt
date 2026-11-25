@@ -1,0 +1,5 @@
+To make the portfolio's Download CV link work, upload the real, final CV PDF to this directory as:
+
+public/cv.pdf
+
+The website serves that file at /cv.pdf and downloads it as Pius-Olasupo-CV.pdf. Do not replace it with a placeholder or a different document.
